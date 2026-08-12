@@ -1,0 +1,930 @@
+ ROLL NO: 241001045                              COMPUTER NETWORKS
+                                     EXPERIMENT - 1 - LINUX NETWORK COMMANDS   
+
+─(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host proto kernel_lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:00:ff:ea brd ff:ff:ff:ff:ff:ff
+    inet 172.28.240.120/20 brd 172.28.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::215:5dff:fe00:ffea/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+─(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=18.7 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=9.04 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=18.9 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=14.4 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=118 time=16.4 ms
+64 bytes from 8.8.8.8: icmp_seq=6 ttl=118 time=13.4 ms
+64 bytes from 8.8.8.8: icmp_seq=7 ttl=118 time=16.5 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=118 time=15.0 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=118 time=8.58 ms
+64 bytes from 8.8.8.8: icmp_seq=10 ttl=118 time=13.3 ms
+64 bytes from 8.8.8.8: icmp_seq=11 ttl=118 time=7.73 ms
+64 bytes from 8.8.8.8: icmp_seq=12 ttl=118 time=6.57 ms
+64 bytes from 8.8.8.8: icmp_seq=13 ttl=118 time=10.3 ms
+64 bytes from 8.8.8.8: icmp_seq=14 ttl=118 time=12.7 ms
+ping 8.8.8.864 bytes from 8.8.8.8: icmp_seq=15 ttl=118 time=20.0 ms
+^C
+--- 8.8.8.8 ping statistics ---
+15 packets transmitted, 15 received, 0% packet loss, time 14027ms
+rtt min/avg/max/mdev = 6.574/13.427/19.970/4.110 ms
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ip route show
+default via 172.28.240.1 dev eth0 proto kernel
+172.28.240.0/20 dev eth0 proto kernel scope link src 172.28.240.120
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ss -tuln
+Netid     State      Recv-Q      Send-Q            Local Address:Port           Peer Address:Port
+udp       UNCONN     0           0                10.255.255.254:53                  0.0.0.0:*
+udp       UNCONN     0           0                     127.0.0.1:323                 0.0.0.0:*
+udp       UNCONN     0           0                         [::1]:323                    [::]:*
+tcp       LISTEN     0           1000             10.255.255.254:53                  0.0.0.0:*
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nslookup www.google.com
+Server:         10.255.255.254
+Address:        10.255.255.254#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 142.251.154.119
+Name:   www.google.com
+Address: 142.251.150.119
+Name:   www.google.com
+Address: 142.251.156.119
+Name:   www.google.com
+Address: 142.251.153.119
+Name:   www.google.com
+Address: 142.251.151.119
+Name:   www.google.com
+Address: 142.251.152.119
+Name:   www.google.com
+Address: 142.251.157.119
+Name:   www.google.com
+Address: 142.251.155.119
+Name:   www.google.com
+Address: 2001:4860:4827:7700::
+Name:   www.google.com
+Address: 2001:4860:4826:7700::
+Name:   www.google.com
+Address: 2001:4860:482a:7700::
+Name:   www.google.com
+Address: 2001:4860:4828:7700::
+Name:   www.google.com
+Address: 2001:4860:482c:7700::
+Name:   www.google.com
+Address: 2001:4860:482b:7700::
+Name:   www.google.com
+Address: 2001:4860:482d:7700::
+Name:   www.google.com
+Address: 2001:4860:4829:7700::
+──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ wget https://example.com/file.pdf
+--2026-07-22 15:18:56--  https://example.com/file.pdf
+Resolving example.com (example.com)... 104.20.23.154, 172.66.147.243, 2606:4700:9b05:72db:f2a5:0:ef6b:ff98
+Connecting to example.com (example.com)|104.20.23.154|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2026-07-22 15:18:56 ERROR 404: Not Found.
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ hostname
+DESKTOP-B97MJ0J
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 172.28.240.120:35446    104.20.23.154:https     TIME_WAIT
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         STREAM     CONNECTED     67
+unix  2      [ ]         DGRAM      CONNECTED     4448
+unix  3      [ ]         STREAM     CONNECTED     1756
+unix  2      [ ]         DGRAM                    4788     /run/user/1000/systemd/notify
+unix  3      [ ]         STREAM     CONNECTED     2483
+unix  3      [ ]         STREAM     CONNECTED     6364     /run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    2241     /var/run/chrony/chronyd.sock
+unix  2      [ ]         DGRAM      CONNECTED     2859
+unix  3      [ ]         DGRAM      CONNECTED     4790
+unix  3      [ ]         STREAM     CONNECTED     2850
+unix  3      [ ]         STREAM     CONNECTED     4572     /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     7542
+unix  3      [ ]         STREAM     CONNECTED     5600
+unix  3      [ ]         DGRAM      CONNECTED     5323
+unix  3      [ ]         DGRAM      CONNECTED     5317     /run/systemd/notify
+unix  3      [ ]         STREAM     CONNECTED     3266
+unix  3      [ ]         STREAM     CONNECTED     3409     /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     5651     /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     7188
+unix  3      [ ]         STREAM     CONNECTED     7264     /run/systemd/journal/stdout
+unix  4      [ ]         DGRAM      CONNECTED     5338     /run/systemd/journal/dev-log
+unix  6      [ ]         DGRAM      CONNECTED     5339     /run/systemd/journal/socket
+unix  3      [ ]         DGRAM      CONNECTED     5320
+unix  3      [ ]         STREAM     CONNECTED     5292
+unix  3      [ ]         STREAM     CONNECTED     65
+unix  3      [ ]         STREAM     CONNECTED     64
+unix  3      [ ]         DGRAM      CONNECTED     5322
+unix  2      [ ]         DGRAM      CONNECTED     2359
+unix  3      [ ]         DGRAM      CONNECTED     4794
+unix  3      [ ]         STREAM     CONNECTED     3265
+unix  3      [ ]         STREAM     CONNECTED     5291
+unix  3      [ ]         STREAM     CONNECTED     8350     /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM      CONNECTED     4791
+unix  2      [ ]         STREAM     CONNECTED     3264
+unix  2      [ ]         DGRAM      CONNECTED     1762
+unix  3      [ ]         STREAM     CONNECTED     66
+unix  3      [ ]         DGRAM      CONNECTED     5319
+unix  3      [ ]         STREAM     CONNECTED     4500     /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     3273
+unix  3      [ ]         STREAM     CONNECTED     232
+unix  3      [ ]         DGRAM      CONNECTED     4792
+unix  3      [ ]         DGRAM      CONNECTED     5318
+unix  3      [ ]         STREAM     CONNECTED     3640     /tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     233
+unix  2      [ ]         DGRAM      CONNECTED     3527
+unix  3      [ ]         DGRAM      CONNECTED     4793
+unix  3      [ ]         STREAM     CONNECTED     5439
+unix  3      [ ]         STREAM     CONNECTED     7329     /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM      CONNECTED     5321
+unix  3      [ ]         STREAM     CONNECTED     8324     /mnt/wslg/PulseAudioRDPSink
+unix  3      [ ]         STREAM     CONNECTED     3274
+unix  2      [ ]         DGRAM      CONNECTED     2488
+unix  3      [ ]         STREAM     CONNECTED     3644     /tmp/dbus-2wUGs0ILvK
+unix  3      [ ]         DGRAM      CONNECTED     4789
+unix  3      [ ]         STREAM     CONNECTED     5417
+unix  2      [ ]         DGRAM      CONNECTED     2866
+unix  2      [ ]         DGRAM                    1768     @10097684454303822544
+unix  3      [ ]         STREAM     CONNECTED     4571     @447add71b1ccfbb7/bus/systemd/bus-api-system
+unix  3      [ ]         STREAM     CONNECTED     3543     @fb52416663ef4aa6/bus/systemd-logind/system
+unix  3      [ ]         STREAM     CONNECTED     4796     @f6a22ced55a7d5ab/bus/systemd/bus-system
+──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.28.240.120  netmask 255.255.240.0  broadcast 172.28.255.255
+        inet6 fe80::215:5dff:fe00:ffea  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:00:ff:ea  txqueuelen 1000  (Ethernet)
+        RX packets 122  bytes 25773 (25.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 48  bytes 4289 (4.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 16  bytes 1634 (1.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 16  bytes 1634 (1.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ping google.com
+PING google.com (142.251.221.174) 56(84) bytes of data.
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=1 ttl=118 time=11.7 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=2 ttl=118 time=11.1 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=3 ttl=118 time=5.98 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=4 ttl=118 time=6.77 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=5 ttl=118 time=14.4 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=6 ttl=118 time=20.0 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=7 ttl=118 time=10.5 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=8 ttl=118 time=9.46 ms
+64 bytes from pnmaaa-au-in-f14.1e100.net (142.251.221.174): icmp_seq=9 ttl=118 time=12.2 ms
+^C
+--- google.com ping statistics ---
+9 packets transmitted, 9 received, 0% packet loss, time 8011ms
+rtt min/avg/max/mdev = 5.980/11.351/19.991/3.930 ms
+──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt update
+Get:1 http://kali.download/kali kali-last-snapshot InRelease [34.0 kB]
+Get:2 http://kali.download/kali kali-last-snapshot/main amd64 Packages [21.2 MB]
+Get:3 http://kali.download/kali kali-last-snapshot/main amd64 Contents (deb) [53.3 MB]
+Get:4 http://kali.download/kali kali-last-snapshot/contrib amd64 Packages [103 kB]
+Get:5 http://kali.download/kali kali-last-snapshot/contrib amd64 Contents (deb) [188 kB]
+Get:6 http://kali.download/kali kali-last-snapshot/non-free amd64 Packages [175 kB]
+Get:7 http://kali.download/kali kali-last-snapshot/non-free amd64 Contents (deb) [891 kB]
+Get:8 http://kali.download/kali kali-last-snapshot/non-free-firmware amd64 Packages [15.8 kB]
+Get:9 http://kali.download/kali kali-last-snapshot/non-free-firmware amd64 Contents (deb) [38.9 kB]
+Fetched 76.0 MB in 5s (14.3 MB/s)
+All packages are up to date.
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt install iputils-tracepath
+Installing:
+  iputils-tracepath
+
+Suggested packages:
+  traceroute
+
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 0
+  Download size: 21.4 kB
+  Space needed: 51.2 kB / 1,025 GB available
+
+Get:1 http://mirrors.esto.network/kali kali-last-snapshot/main amd64 iputils-tracepath amd64 3:20250605-1 [21.4 kB]
+Fetched 21.4 kB in 1s (26.1 kB/s)
+Selecting previously unselected package iputils-tracepath.
+(Reading database… 32051 files and directories currently installed.)
+Preparing to unpack …/iputils-tracepath_3%3a20250605-1_amd64.deb…
+Unpacking iputils-tracepath (3:20250605-1)…
+Setting up iputils-tracepath (3:20250605-1)…
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ tracepath google.com
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  ???                                                   0.290ms
+ 1:  ???                                                   0.783ms
+ 2:  172.16.8.1                                            2.408ms
+g 3:  137.97.163.129                                       18.544ms
+ 4:  no reply
+ 5:  172.31.5.65                                           6.186ms
+ 6:  172.16.12.64                                         13.983ms
+ 7:  no reply
+ 8:  no reply
+ 9:  no reply
+10:  no reply
+11:  no reply
+12:  no reply
+13:  no reply
+14:  no reply
+15:  no reply
+16:  no reply
+17:  no reply
+18:  no reply
+19:  no reply
+^C
+──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ netstat -an
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 10.255.255.254:53       0.0.0.0:*               LISTEN
+udp        0      0 10.255.255.254:53       0.0.0.0:*
+udp        0      0 127.0.0.1:323           0.0.0.0:*
+udp6       0      0 ::1:323                 :::*
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   Path
+unix  3      [ ]         STREAM     CONNECTED     67
+unix  2      [ ACC ]     STREAM     LISTENING     2291     /run/WSL/2_interop
+unix  2      [ ACC ]     STREAM     LISTENING     3238     /run/WSL/1_interop
+unix  2      [ ACC ]     SEQPACKET  LISTENING     1650     /mnt/wslg/weston-notify.sock
+unix  2      [ ACC ]     STREAM     LISTENING     5289     /var/run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     7536     /run/WSL/246_interop
+unix  2      [ ACC ]     STREAM     LISTENING     3248     /mnt/wslg/runtime-dir/wayland-0
+unix  2      [ ACC ]     STREAM     LISTENING     1652     /tmp/.X11-unix/X0
+unix  2      [ ]         DGRAM      CONNECTED     4448
+unix  3      [ ]         STREAM     CONNECTED     1756
+unix  2      [ ]         DGRAM                    4788     /run/user/1000/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     7185     /mnt/wslg/runtime-dir/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     4795     /run/user/1000/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     5596     /mnt/wslg/PulseAudioRDPSource
+unix  2      [ ACC ]     STREAM     LISTENING     4797     /run/user/1000/systemd/io.systemd.Manager
+unix  3      [ ]         STREAM     CONNECTED     2483
+unix  2      [ ACC ]     STREAM     LISTENING     4799     /run/user/1000/systemd/report/io.systemd.Manager
+unix  3      [ ]         STREAM     CONNECTED     6364     /run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM                    2241     /var/run/chrony/chronyd.sock
+unix  2      [ ACC ]     STREAM     LISTENING     4807     /run/user/1000/bus
+unix  2      [ ACC ]     STREAM     LISTENING     4810     /run/user/1000/openssh_agent
+unix  2      [ ACC ]     STREAM     LISTENING     4812     /run/user/1000/systemd/io.systemd.AskPassword
+unix  2      [ ]         DGRAM      CONNECTED     2859
+unix  3      [ ]         DGRAM      CONNECTED     4790
+unix  2      [ ACC ]     STREAM     LISTENING     4813     /run/user/1000/systemd/io.systemd.JournalAccess
+unix  3      [ ]         STREAM     CONNECTED     2850
+unix  2      [ ACC ]     STREAM     LISTENING     7541     /mnt/wslg/PulseServer
+unix  3      [ ]         STREAM     CONNECTED     4572     /run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     3645     /mnt/wslg/PulseAudioRDPSink
+unix  3      [ ]         STREAM     CONNECTED     7542
+unix  2      [ ACC ]     STREAM     LISTENING     1671     /tmp/dbus-2wUGs0ILvK
+unix  3      [ ]         STREAM     CONNECTED     5600
+unix  3      [ ]         DGRAM      CONNECTED     5323
+unix  3      [ ]         DGRAM      CONNECTED     5317     /run/systemd/notify
+unix  3      [ ]         STREAM     CONNECTED     3266
+unix  2      [ ACC ]     STREAM     LISTENING     5324     /run/systemd/private
+unix  3      [ ]         STREAM     CONNECTED     3409     /run/systemd/journal/stdout
+unix  2      [ ACC ]     STREAM     LISTENING     5325     /run/systemd/io.systemd.Manager
+unix  2      [ ACC ]     STREAM     LISTENING     5326     /run/systemd/userdb/io.systemd.DynamicUser
+unix  3      [ ]         STREAM     CONNECTED     5651     /run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     5327     /run/systemd/io.systemd.ManagedOOM
+unix  2      [ ACC ]     STREAM     LISTENING     5328     /run/systemd/report/io.systemd.Manager
+unix  3      [ ]         STREAM     CONNECTED     7188
+unix  2      [ ACC ]     STREAM     LISTENING     5335     /run/systemd/io.systemd.AskPassword
+unix  2      [ ACC ]     STREAM     LISTENING     5336     /run/systemd/io.systemd.Credentials
+unix  2      [ ACC ]     STREAM     LISTENING     5337     /run/systemd/io.systemd.FactoryReset
+unix  3      [ ]         STREAM     CONNECTED     7264     /run/systemd/journal/stdout
+unix  4      [ ]         DGRAM      CONNECTED     5338     /run/systemd/journal/dev-log
+unix  6      [ ]         DGRAM      CONNECTED     5339     /run/systemd/journal/socket
+unix  2      [ ACC ]     STREAM     LISTENING     5340     /run/systemd/journal/stdout
+unix  2      [ ACC ]     STREAM     LISTENING     5341     /run/systemd/io.systemd.MuteConsole
+unix  2      [ ACC ]     SEQPACKET  LISTENING     5342     /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     5344     /run/udev/io.systemd.Udev
+unix  3      [ ]         DGRAM      CONNECTED     5320
+unix  3      [ ]         STREAM     CONNECTED     5292
+unix  3      [ ]         STREAM     CONNECTED     65
+unix  3      [ ]         STREAM     CONNECTED     64
+unix  2      [ ACC ]     STREAM     LISTENING     4445     /run/systemd/journal/io.systemd.journal
+unix  3      [ ]         DGRAM      CONNECTED     5322
+unix  2      [ ]         DGRAM      CONNECTED     2359
+unix  3      [ ]         DGRAM      CONNECTED     4794
+unix  2      [ ACC ]     STREAM     LISTENING     3339     /run/systemd/io.systemd.sysext
+unix  3      [ ]         STREAM     CONNECTED     3265
+unix  2      [ ACC ]     STREAM     LISTENING     2347     /run/systemd/io.systemd.JournalAccess
+unix  3      [ ]         STREAM     CONNECTED     5291
+unix  3      [ ]         STREAM     CONNECTED     8350     /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM      CONNECTED     4791
+unix  2      [ ]         STREAM     CONNECTED     3264
+unix  2      [ ACC ]     STREAM     LISTENING     2455     /run/dbus/system_bus_socket
+unix  2      [ ]         DGRAM      CONNECTED     1762
+unix  2      [ ACC ]     STREAM     LISTENING     2456     /run/ssh-unix-local/socket
+unix  2      [ ACC ]     STREAM     LISTENING     2457     /run/systemd/io.systemd.Hostname
+unix  2      [ ACC ]     STREAM     LISTENING     2458     /run/systemd/io.systemd.Login
+unix  3      [ ]         STREAM     CONNECTED     66
+unix  3      [ ]         DGRAM      CONNECTED     5319
+unix  3      [ ]         STREAM     CONNECTED     4500     /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     3273
+unix  3      [ ]         STREAM     CONNECTED     232
+unix  3      [ ]         DGRAM      CONNECTED     4792
+unix  3      [ ]         DGRAM      CONNECTED     5318
+unix  3      [ ]         STREAM     CONNECTED     3640     /tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     233
+unix  2      [ ]         DGRAM      CONNECTED     3527
+unix  3      [ ]         DGRAM      CONNECTED     4793
+unix  3      [ ]         STREAM     CONNECTED     5439
+unix  3      [ ]         STREAM     CONNECTED     7329     /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM      CONNECTED     5321
+unix  3      [ ]         STREAM     CONNECTED     8324     /mnt/wslg/PulseAudioRDPSink
+unix  3      [ ]         STREAM     CONNECTED     3274
+unix  2      [ ]         DGRAM      CONNECTED     2488
+unix  3      [ ]         STREAM     CONNECTED     3644     /tmp/dbus-2wUGs0ILvK
+unix  3      [ ]         DGRAM      CONNECTED     4789
+unix  3      [ ]         STREAM     CONNECTED     5417
+unix  2      [ ]         DGRAM      CONNECTED     2866
+unix  2      [ ]         DGRAM                    1768     @10097684454303822544
+unix  3      [ ]         STREAM     CONNECTED     4571     @447add71b1ccfbb7/bus/systemd/bus-api-system
+unix  3      [ ]         STREAM     CONNECTED     3543     @fb52416663ef4aa6/bus/systemd-logind/system
+unix  3      [ ]         STREAM     CONNECTED     4796     @f6a22ced55a7d5ab/bus/systemd/bus-system
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ss -tuln
+Netid     State      Recv-Q      Send-Q            Local Address:Port           Peer Address:Port
+udp       UNCONN     0           0                10.255.255.254:53                  0.0.0.0:*
+udp       UNCONN     0           0                     127.0.0.1:323                 0.0.0.0:*
+udp       UNCONN     0           0                         [::1]:323                    [::]:*
+tcp       LISTEN     0           1000             10.255.255.254:53                  0.0.0.0:*
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ hostname
+DESKTOP-B97MJ0J
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nslookup google.com
+Server:         10.255.255.254
+Address:        10.255.255.254#53
+
+Non-authoritative answer:
+Name:   google.com
+Address: 142.250.205.110
+Name:   google.com
+Address: 2404:6800:4007:807::200e
+
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ dig google.com
+
+; <<>> DiG 9.20.23-1-Debian <<>> google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 44473
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;google.com.                    IN      A
+
+;; ANSWER SECTION:
+google.com.             56      IN      A       142.250.205.110
+
+;; Query time: 7 msec
+;; SERVER: 10.255.255.254#53(10.255.255.254) (UDP)
+;; WHEN: Wed Jul 22 15:27:23 IST 2026
+;; MSG SIZE  rcvd: 44
+──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ host google.com
+google.com has address 172.217.24.14
+google.com has IPv6 address 2404:6800:4007:807::200e
+google.com mail is handled by 10 smtp.google.com.
+google.com has HTTP service bindings 1 . alpn="h2,h3"
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ip neigh show
+172.28.240.1 dev eth0 lladdr 00:15:5d:cf:45:ac STALE
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         172.28.240.1    0.0.0.0         UG    0      0        0 eth0
+172.28.240.0    0.0.0.0         255.255.240.0   U     0      0        0 eth0
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ip route show
+default via 172.28.240.1 dev eth0 proto kernel
+172.28.240.0/20 dev eth0 proto kernel scope link src 172.28.240.120
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ curl https://example.com
+<!doctype html><html lang="en"><head><title>Example Domain</title><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#eee;width:60vw;margin:15vh auto;font-family:system-ui,sans-serif}h1{font-size:1.5em}div{opacity:0.8}a:link,a:visited{color:#348}</style></head><body><div><h1>Example Domain</h1><p>This domain is for use in documentation examples without needing permission. Avoid use in operations.</p><p><a href="https://iana.org/domains/example">Learn more</a></p></div></body></html>
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ wget https://example.com/file.zip
+--2026-07-22 15:30:47--  https://example.com/file.zip
+Resolving example.com (example.com)... 172.66.147.243, 104.20.23.154, 2606:4700:99e5:72db:f2ca:0:ef6b:ff98
+Connecting to example.com (example.com)|172.66.147.243|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2026-07-22 15:30:47 ERROR 404: Not Found.
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ssh user@192.168.1.10
+ssh: connect to host 192.168.1.10 port 22: No route to host
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ftp ftp.example.com
+ftp: Can't lookup `ftp.example.com:ftp': No address associated with hostname
+ftp> 192.168.1.10 80
+?Invalid command.
+ftp> telnet 192.168.1.10 80
+?Invalid command.
+ftp>
+ftp>
+ftp>
+ftp>
+ftp> quit
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ telnet 192.168.1.10 80
+Command 'telnet' not found, did you mean:
+  command 'telnetd' from deb inetutils-telnetd
+  command 'ztelnet' from deb zssh
+Try: sudo apt install <deb name>
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt update
+sudo apt install telnet
+Hit:1 http://http.kali.org/kali kali-last-snapshot InRelease
+All packages are up to date.
+Installing:
+  telnet
+
+Installing dependencies:
+  inetutils-telnet
+
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 0
+  Download size: 176 kB
+  Space needed: 340 kB / 1,025 GB available
+
+Continue? [Y/n] Y
+Get:1 http://kali.download/kali kali-last-snapshot/main amd64 inetutils-telnet amd64 2:2.8-2 [132 kB]
+Get:2 http://http.kali.org/kali kali-last-snapshot/main amd64 telnet all 0.17+2.8-2 [44.8 kB]
+Fetched 176 kB in 1s (228 kB/s)
+Selecting previously unselected package inetutils-telnet.
+(Reading database… 32058 files and directories currently installed.)
+Preparing to unpack …/inetutils-telnet_2%3a2.8-2_amd64.deb…
+Unpacking inetutils-telnet (2:2.8-2)…
+Selecting previously unselected package telnet.
+Preparing to unpack …/telnet_0.17+2.8-2_all.deb…
+Unpacking telnet (0.17+2.8-2)…
+Setting up inetutils-telnet (2:2.8-2)…
+update-alternatives: using /usr/bin/inetutils-telnet to provide /usr/bin/telnet (telnet) in auto mode
+Setting up telnet (0.17+2.8-2)…
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ telnet 192.168.1.10 80
+Trying 192.168.1.10...
+Connected to 192.168.1.10.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nc -zv 192.168.1.10 22
+192.168.1.10: inverse host lookup failed: Unknown host
+(UNKNOWN) [192.168.1.10] 22 (ssh) : No route to host
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nmap 192.168.1.1
+Command 'nmap' not found, but can be installed with:
+sudo apt install nmap
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt install nmap
+Installing:
+  nmap
+
+Installing dependencies:
+  libblas3  liblinear4  liblua5.4-0  nmap-common
+
+Suggested packages:
+  liblinear-tools  liblinear-dev  ncat  ndiff  zenmap
+
+Summary:
+  Upgrading: 0, Installing: 5, Removing: 0, Not Upgrading: 0
+  Download size: 7,082 kB
+  Space needed: 30.1 MB / 1,025 GB available
+
+Continue? [Y/n] Y
+Get:1 http://http.kali.org/kali kali-last-snapshot/main amd64 libblas3 amd64 3.12.1-7+b2 [206 kB]
+Get:2 http://http.kali.org/kali kali-last-snapshot/main amd64 liblinear4 amd64 2.3.0+dfsg-5+b3 [42.9 kB]
+Get:3 http://http.kali.org/kali kali-last-snapshot/main amd64 liblua5.4-0 amd64 5.4.8-1+b2 [148 kB]
+Get:4 http://http.kali.org/kali kali-last-snapshot/non-free amd64 nmap-common all 7.99+dfsg-1kali1 [4,698 kB]
+Get:5 http://http.kali.org/kali kali-last-snapshot/non-free amd64 nmap amd64 7.99+dfsg-1kali1 [1,987 kB]
+Fetched 7,082 kB in 5s (1,456 kB/s)
+Selecting previously unselected package libblas3:amd64.
+(Reading database… 32075 files and directories currently installed.)
+Preparing to unpack …/libblas3_3.12.1-7+b2_amd64.deb…
+Unpacking libblas3:amd64 (3.12.1-7+b2)…
+Selecting previously unselected package liblinear4:amd64.
+Preparing to unpack …/liblinear4_2.3.0+dfsg-5+b3_amd64.deb…
+Unpacking liblinear4:amd64 (2.3.0+dfsg-5+b3)…
+Selecting previously unselected package liblua5.4-0:amd64.
+Preparing to unpack …/liblua5.4-0_5.4.8-1+b2_amd64.deb…
+Unpacking liblua5.4-0:amd64 (5.4.8-1+b2)…
+Selecting previously unselected package nmap-common.
+Preparing to unpack …/nmap-common_7.99+dfsg-1kali1_all.deb…
+Unpacking nmap-common (7.99+dfsg-1kali1)…
+Selecting previously unselected package nmap.
+Preparing to unpack …/nmap_7.99+dfsg-1kali1_amd64.deb…
+Unpacking nmap (7.99+dfsg-1kali1)…
+Setting up libblas3:amd64 (3.12.1-7+b2)…
+update-alternatives: using /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 to provide /usr/lib/x86_64-linux-gnu/libblas.so.3 (libblas.so.3-x86_64-linux-gnu) in auto mode
+Setting up nmap-common (7.99+dfsg-1kali1)…
+Setting up liblua5.4-0:amd64 (5.4.8-1+b2)…
+Setting up liblinear4:amd64 (2.3.0+dfsg-5+b3)…
+Setting up nmap (7.99+dfsg-1kali1)…
+Setcap worked! Adding configuration to environment
+Processing triggers for libc-bin (2.42-16)…
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nmap 192.168.1.1
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-07-22 15:37 +0530
+Nmap scan report for 192.168.1.1
+Host is up (0.0027s latency).
+Not shown: 991 filtered tcp ports (no-response), 6 filtered tcp ports (admin-prohibited)
+PORT    STATE SERVICE
+21/tcp  open  ftp
+80/tcp  open  http
+443/tcp open  https
+
+Nmap done: 1 IP address (1 host up) scanned in 5.06 seconds
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo tcpdump -i eth0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+^C
+0 packets captured
+0 packets received by filter
+0 packets dropped by kernel
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt install ethtool
+Installing:
+  ethtool
+
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 0
+  Download size: 300 kB
+  Space needed: 1,114 kB / 1,025 GB available
+
+Get:1 http://kali.download/kali kali-last-snapshot/main amd64 ethtool amd64 1:7.0-1 [300 kB]
+Fetched 300 kB in 1s (443 kB/s)
+Selecting previously unselected package ethtool.
+(Reading database… 32962 files and directories currently installed.)
+Preparing to unpack …/ethtool_1%3a7.0-1_amd64.deb…
+Unpacking ethtool (1:7.0-1)…
+Setting up ethtool (1:7.0-1)…
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ ethtool eth0
+Settings for eth0:
+        Supported ports: [  ]
+        Supported link modes:   Not reported
+        Supported pause frame use: No
+        Supports auto-negotiation: No
+        Supported FEC modes: Not reported
+        Advertised link modes:  Not reported
+        Advertised pause frame use: No
+        Advertised auto-negotiation: No
+        Advertised FEC modes: Not reported
+        Speed: 10000Mb/s
+        Duplex: Full
+        Auto-negotiation: off
+        Port: Other
+        PHYAD: 0
+        Transceiver: internal
+netlink error: Operation not permitted
+        Current message level: 0x000000f7 (247)
+                               drv probe link ifdown ifup rx_err tx_err
+        Link detected: yes
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ iwconfig
+Command 'iwconfig' not found, but can be installed with:
+sudo apt install wireless-tools
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt install wireless-tools
+Installing:
+  wireless-tools
+
+Installing dependencies:
+  libiw30t64
+
+Summary:
+  Upgrading: 0, Installing: 2, Removing: 0, Not Upgrading: 0
+  Download size: 100.0 kB
+  Space needed: 284 kB / 1,025 GB available
+
+Continue? [Y/n] Y
+Get:1 http://http.kali.org/kali kali-last-snapshot/main amd64 libiw30t64 amd64 30~pre9-21 [17.2 kB]
+Get:2 http://http.kali.org/kali kali-last-snapshot/main amd64 wireless-tools amd64 30~pre9-21 [82.7 kB]
+Fetched 100.0 kB in 1s (77.6 kB/s)
+Selecting previously unselected package libiw30t64:amd64.
+(Reading database… 32976 files and directories currently installed.)
+Preparing to unpack …/libiw30t64_30~pre9-21_amd64.deb…
+Unpacking libiw30t64:amd64 (30~pre9-21)…
+Selecting previously unselected package wireless-tools.
+Preparing to unpack …/wireless-tools_30~pre9-21_amd64.deb…
+Unpacking wireless-tools (30~pre9-21)…
+Setting up libiw30t64:amd64 (30~pre9-21)…
+Setting up wireless-tools (30~pre9-21)…
+Processing triggers for libc-bin (2.42-16)…
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ nmcli device status
+Command 'nmcli' not found, but can be installed with:
+sudo apt install network-manager
+
+┌──(vel㉿DESKTOP-B97MJ0J)-[/mnt/c/Users/REC]
+└─$ sudo apt install network-manager
+Installing:
+  network-manager
+
+Installing dependencies:
+  dns-root-data    libmbim-utils            libpolkit-gobject-1-0  sgml-base
+  dnsmasq-base     libmm-glib0              libqmi-glib5           shared-mime-info
+  libatomic1       libndp0                  libqmi-proxy           usb-modeswitch
+  libbluetooth3    libnetfilter-conntrack3  libqmi-utils           usb-modeswitch-data
+  libduktape207    libnfnetlink0            libqrtr-glib0          wireless-regdb
+  libglib2.0-0t64  libnl-3-200              libusb-1.0-0           wpasupplicant
+  libglib2.0-data  libnl-genl-3-200         modemmanager           xdg-user-dirs
+  libgudev-1.0-0   libnl-route-3-200        network-manager-l10n   xml-core
+  libjim0.83       libnm0                   network-manager-tui
+  libmbim-glib4    libpcsclite1             polkitd
+  libmbim-proxy    libpolkit-agent-1-0      ppp
+
+Suggested packages:
+  low-memory-monitor  network-manager-ovs   sgml-base-doc  wvdial  libengine-pkcs11-openssl
+  pcscd               network-manager-team  comgt          wpagui  debhelper
+
+Summary:
+  Upgrading: 0, Installing: 42, Removing: 0, Not Upgrading: 0
+  Download size: 14.1 MB
+  Space needed: 63.3 MB / 1,025 GB available
+
+Continue? [Y/n] Y
+Get:1 http://kali.download/kali kali-last-snapshot/main amd64 dns-root-data all 2025080400 [5,772 B]
+Get:2 http://http.kali.org/kali kali-last-snapshot/main amd64 libnfnetlink0 amd64 1.0.2-3+b2 [14.9 kB]
+Get:3 http://kali.download/kali kali-last-snapshot/main amd64 libnetfilter-conntrack3 amd64 1.1.1-1 [43.5 kB]
+Get:4 http://kali.download/kali kali-last-snapshot/main amd64 dnsmasq-base amd64 2.93-1 [585 kB]
+Get:5 http://kali.download/kali kali-last-snapshot/main amd64 libatomic1 amd64 16.1.0-1 [10.4 kB]
+Get:6 http://kali.download/kali kali-last-snapshot/main amd64 libbluetooth3 amd64 5.85-4 [101 kB]
+Get:7 http://http.kali.org/kali kali-last-snapshot/main amd64 libduktape207 amd64 2.7.0-2+b3 [134 kB]
+Get:8 http://kali.download/kali kali-last-snapshot/main amd64 libglib2.0-0t64 amd64 2.88.1-2 [1,536 kB]
+Get:9 http://kali.download/kali kali-last-snapshot/main amd64 libglib2.0-data all 2.88.1-2 [1,278 kB]
+Get:11 http://http.kali.org/kali kali-last-snapshot/main amd64 libjim0.83 amd64 0.83-2+b2 [149 kB]
+Get:10 http://http.kali.org/kali kali-last-snapshot/main amd64 libgudev-1.0-0 amd64 238-7+b2 [14.4 kB]
+Get:12 http://http.kali.org/kali kali-last-snapshot/main amd64 libmbim-glib4 amd64 1.34.0-1+b1 [219 kB]
+Get:13 http://http.kali.org/kali kali-last-snapshot/main amd64 libmbim-proxy amd64 1.34.0-1+b1 [7,404 B]
+Get:14 http://http.kali.org/kali kali-last-snapshot/main amd64 libmbim-utils amd64 1.34.0-1+b1 [74.3 kB]
+Get:16 http://http.kali.org/kali kali-last-snapshot/main amd64 libndp0 amd64 1.9-1+b2 [12.8 kB]
+Get:15 http://http.kali.org/kali kali-last-snapshot/main amd64 libmm-glib0 amd64 1.24.2-2+b1 [243 kB]
+Get:17 http://http.kali.org/kali kali-last-snapshot/main amd64 libnl-3-200 amd64 3.12.0-2+b1 [62.2 kB]
+Get:18 http://http.kali.org/kali kali-last-snapshot/main amd64 libnl-genl-3-200 amd64 3.12.0-2+b1 [18.7 kB]
+Get:19 http://http.kali.org/kali kali-last-snapshot/main amd64 libnl-route-3-200 amd64 3.12.0-2+b1 [200 kB]
+Get:20 http://kali.download/kali kali-last-snapshot/main amd64 libnm0 amd64 1.56.1-1 [470 kB]
+Get:21 http://kali.download/kali kali-last-snapshot/main amd64 libpcsclite1 amd64 2.5.0-1 [54.8 kB]
+Get:23 http://http.kali.org/kali kali-last-snapshot/main amd64 libpolkit-agent-1-0 amd64 127+really127-3kali1 [20.7 kB]
+Get:22 http://http.kali.org/kali kali-last-snapshot/main amd64 libpolkit-gobject-1-0 amd64 127+really127-3kali1 [45.1 kB]
+Get:24 http://http.kali.org/kali kali-last-snapshot/main amd64 libqrtr-glib0 amd64 1.4.0-1+b1 [17.2 kB]
+Get:25 http://http.kali.org/kali kali-last-snapshot/main amd64 libqmi-glib5 amd64 1.38.0-1+b1 [935 kB]
+Get:26 http://http.kali.org/kali kali-last-snapshot/main amd64 libqmi-proxy amd64 1.38.0-1+b1 [7,596 B]
+Get:27 http://http.kali.org/kali kali-last-snapshot/main amd64 libqmi-utils amd64 1.38.0-1+b1 [204 kB]
+Get:28 http://kali.download/kali kali-last-snapshot/main amd64 libusb-1.0-0 amd64 2:1.0.30-1 [61.1 kB]
+Get:29 http://http.kali.org/kali kali-last-snapshot/main amd64 sgml-base all 1.31+nmu1 [10.9 kB]
+Get:30 http://kali.download/kali kali-last-snapshot/main amd64 xml-core all 0.20 [20.0 kB]
+Get:31 http://http.kali.org/kali kali-last-snapshot/main amd64 polkitd amd64 127+really127-3kali1 [124 kB]
+Get:32 http://http.kali.org/kali kali-last-snapshot/main amd64 modemmanager amd64 1.24.2-2+b1 [1,070 kB]
+Get:34 http://kali.download/kali kali-last-snapshot/main amd64 network-manager-l10n all 1.56.1-1 [1,246 kB]
+Get:36 http://http.kali.org/kali kali-last-snapshot/main amd64 ppp amd64 2.5.2-1+2 [344 kB]
+Get:37 http://http.kali.org/kali kali-last-snapshot/main amd64 shared-mime-info amd64 2.4-5+b3 [758 kB]
+Get:38 http://kali.download/kali kali-last-snapshot/main amd64 usb-modeswitch-data all 20251207-1 [36.2 kB]
+Get:39 http://kali.download/kali kali-last-snapshot/main amd64 usb-modeswitch amd64 2.6.2-1 [50.8 kB]
+Get:40 http://kali.download/kali kali-last-snapshot/main amd64 wireless-regdb all 2026.05.30-1 [10.9 kB]
+Get:41 http://http.kali.org/kali kali-last-snapshot/main amd64 wpasupplicant amd64 2:2.10-25+b2 [1,433 kB]
+Get:33 http://mirrors.esto.network/kali kali-last-snapshot/main amd64 network-manager amd64 1.56.1-1 [2,173 kB]
+Get:42 http://kali.download/kali kali-last-snapshot/main amd64 xdg-user-dirs amd64 0.20-1 [41.9 kB]
+Get:35 http://mirrors.esto.network/kali kali-last-snapshot/main amd64 network-manager-tui amd64 1.56.1-1 [211 kB]
+Fetched 14.1 MB in 19s (726 kB/s)
+Extracting templates from packages: 100%
+Selecting previously unselected package dns-root-data.
+(Reading database… 33004 files and directories currently installed.)
+Preparing to unpack …/00-dns-root-data_2025080400_all.deb…
+Unpacking dns-root-data (2025080400)…
+Selecting previously unselected package libnfnetlink0:amd64.
+Preparing to unpack …/01-libnfnetlink0_1.0.2-3+b2_amd64.deb…
+Unpacking libnfnetlink0:amd64 (1.0.2-3+b2)…
+Selecting previously unselected package libnetfilter-conntrack3:amd64.
+Preparing to unpack …/02-libnetfilter-conntrack3_1.1.1-1_amd64.deb…
+Unpacking libnetfilter-conntrack3:amd64 (1.1.1-1)…
+Selecting previously unselected package dnsmasq-base.
+Preparing to unpack …/03-dnsmasq-base_2.93-1_amd64.deb…
+Unpacking dnsmasq-base (2.93-1)…
+Selecting previously unselected package libatomic1:amd64.
+Preparing to unpack …/04-libatomic1_16.1.0-1_amd64.deb…
+Unpacking libatomic1:amd64 (16.1.0-1)…
+Selecting previously unselected package libbluetooth3:amd64.
+Preparing to unpack …/05-libbluetooth3_5.85-4_amd64.deb…
+Unpacking libbluetooth3:amd64 (5.85-4)…
+Selecting previously unselected package libduktape207:amd64.
+Preparing to unpack …/06-libduktape207_2.7.0-2+b3_amd64.deb…
+Unpacking libduktape207:amd64 (2.7.0-2+b3)…
+Selecting previously unselected package libglib2.0-0t64:amd64.
+Preparing to unpack …/07-libglib2.0-0t64_2.88.1-2_amd64.deb…
+Unpacking libglib2.0-0t64:amd64 (2.88.1-2)…
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack …/08-libglib2.0-data_2.88.1-2_all.deb…
+Unpacking libglib2.0-data (2.88.1-2)…
+Selecting previously unselected package libgudev-1.0-0:amd64.
+Preparing to unpack …/09-libgudev-1.0-0_238-7+b2_amd64.deb…
+Unpacking libgudev-1.0-0:amd64 (238-7+b2)…
+Selecting previously unselected package libjim0.83:amd64.
+Preparing to unpack …/10-libjim0.83_0.83-2+b2_amd64.deb…
+Unpacking libjim0.83:amd64 (0.83-2+b2)…
+Selecting previously unselected package libmbim-glib4:amd64.
+Preparing to unpack …/11-libmbim-glib4_1.34.0-1+b1_amd64.deb…
+Unpacking libmbim-glib4:amd64 (1.34.0-1+b1)…
+Selecting previously unselected package libmbim-proxy.
+Preparing to unpack …/12-libmbim-proxy_1.34.0-1+b1_amd64.deb…
+Unpacking libmbim-proxy (1.34.0-1+b1)…
+Selecting previously unselected package libmbim-utils.
+Preparing to unpack …/13-libmbim-utils_1.34.0-1+b1_amd64.deb…
+Unpacking libmbim-utils (1.34.0-1+b1)…
+Selecting previously unselected package libmm-glib0:amd64.
+Preparing to unpack …/14-libmm-glib0_1.24.2-2+b1_amd64.deb…
+Unpacking libmm-glib0:amd64 (1.24.2-2+b1)…
+Selecting previously unselected package libndp0:amd64.
+Preparing to unpack …/15-libndp0_1.9-1+b2_amd64.deb…
+Unpacking libndp0:amd64 (1.9-1+b2)…
+Selecting previously unselected package libnl-3-200:amd64.
+Preparing to unpack …/16-libnl-3-200_3.12.0-2+b1_amd64.deb…
+Unpacking libnl-3-200:amd64 (3.12.0-2+b1)…
+Selecting previously unselected package libnl-genl-3-200:amd64.
+Preparing to unpack …/17-libnl-genl-3-200_3.12.0-2+b1_amd64.deb…
+Unpacking libnl-genl-3-200:amd64 (3.12.0-2+b1)…
+Selecting previously unselected package libnl-route-3-200:amd64.
+Preparing to unpack …/18-libnl-route-3-200_3.12.0-2+b1_amd64.deb…
+Unpacking libnl-route-3-200:amd64 (3.12.0-2+b1)…
+Selecting previously unselected package libnm0:amd64.
+Preparing to unpack …/19-libnm0_1.56.1-1_amd64.deb…
+Unpacking libnm0:amd64 (1.56.1-1)…
+Selecting previously unselected package libpcsclite1:amd64.
+Preparing to unpack …/20-libpcsclite1_2.5.0-1_amd64.deb…
+Unpacking libpcsclite1:amd64 (2.5.0-1)…
+Selecting previously unselected package libpolkit-gobject-1-0:amd64.
+Preparing to unpack …/21-libpolkit-gobject-1-0_127+really127-3kali1_amd64.deb…
+Unpacking libpolkit-gobject-1-0:amd64 (127+really127-3kali1)…
+Selecting previously unselected package libpolkit-agent-1-0:amd64.
+Preparing to unpack …/22-libpolkit-agent-1-0_127+really127-3kali1_amd64.deb…
+Unpacking libpolkit-agent-1-0:amd64 (127+really127-3kali1)…
+Selecting previously unselected package libqrtr-glib0:amd64.
+Preparing to unpack …/23-libqrtr-glib0_1.4.0-1+b1_amd64.deb…
+Unpacking libqrtr-glib0:amd64 (1.4.0-1+b1)…
+Selecting previously unselected package libqmi-glib5:amd64.
+Preparing to unpack …/24-libqmi-glib5_1.38.0-1+b1_amd64.deb…
+Unpacking libqmi-glib5:amd64 (1.38.0-1+b1)…
+Selecting previously unselected package libqmi-proxy.
+Preparing to unpack …/25-libqmi-proxy_1.38.0-1+b1_amd64.deb…
+Unpacking libqmi-proxy (1.38.0-1+b1)…
+Selecting previously unselected package libqmi-utils.
+Preparing to unpack …/26-libqmi-utils_1.38.0-1+b1_amd64.deb…
+Unpacking libqmi-utils (1.38.0-1+b1)…
+Selecting previously unselected package libusb-1.0-0:amd64.
+Preparing to unpack …/27-libusb-1.0-0_2%3a1.0.30-1_amd64.deb…
+Unpacking libusb-1.0-0:amd64 (2:1.0.30-1)…
+Selecting previously unselected package sgml-base.
+Preparing to unpack …/28-sgml-base_1.31+nmu1_all.deb…
+Unpacking sgml-base (1.31+nmu1)…
+Selecting previously unselected package xml-core.
+Preparing to unpack …/29-xml-core_0.20_all.deb…
+Unpacking xml-core (0.20)…
+Selecting previously unselected package polkitd.
+Preparing to unpack …/30-polkitd_127+really127-3kali1_amd64.deb…
+Unpacking polkitd (127+really127-3kali1)…
+Selecting previously unselected package modemmanager.
+Preparing to unpack …/31-modemmanager_1.24.2-2+b1_amd64.deb…
+Unpacking modemmanager (1.24.2-2+b1)…
+Selecting previously unselected package network-manager.
+Preparing to unpack …/32-network-manager_1.56.1-1_amd64.deb…
+Unpacking network-manager (1.56.1-1)…
+Selecting previously unselected package network-manager-l10n.
+Preparing to unpack …/33-network-manager-l10n_1.56.1-1_all.deb…
+Unpacking network-manager-l10n (1.56.1-1)…
+Selecting previously unselected package network-manager-tui.
+Preparing to unpack …/34-network-manager-tui_1.56.1-1_amd64.deb…
+Unpacking network-manager-tui (1.56.1-1)…
+Selecting previously unselected package ppp.
+Preparing to unpack …/35-ppp_2.5.2-1+2_amd64.deb…
+Unpacking ppp (2.5.2-1+2)…
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack …/36-shared-mime-info_2.4-5+b3_amd64.deb…
+Unpacking shared-mime-info (2.4-5+b3)…
+Selecting previously unselected package usb-modeswitch-data.
+Preparing to unpack …/37-usb-modeswitch-data_20251207-1_all.deb…
+Unpacking usb-modeswitch-data (20251207-1)…
+Selecting previously unselected package usb-modeswitch.
+Preparing to unpack …/38-usb-modeswitch_2.6.2-1_amd64.deb…
+Unpacking usb-modeswitch (2.6.2-1)…
+Selecting previously unselected package wireless-regdb.
+Preparing to unpack …/39-wireless-regdb_2026.05.30-1_all.deb…
+Unpacking wireless-regdb (2026.05.30-1)…
+Selecting previously unselected package wpasupplicant.
+Preparing to unpack …/40-wpasupplicant_2%3a2.10-25+b2_amd64.deb…
+Unpacking wpasupplicant (2:2.10-25+b2)…
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack …/41-xdg-user-dirs_0.20-1_amd64.deb…
+Unpacking xdg-user-dirs (0.20-1)…
+Setting up xdg-user-dirs (0.20-1)…
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/xdg-user-dirs.service' → '/usr/lib/systemd/user/xdg-user-dirs.service'.
+Setting up network-manager-l10n (1.56.1-1)…
+Setting up wireless-regdb (2026.05.30-1)…
+update-alternatives: using /lib/firmware/regulatory.db-debian to provide /lib/firmware/regulatory.db (regulatory.db) in auto mode
+Setting up dns-root-data (2025080400)…
+Setting up libglib2.0-data (2.88.1-2)…
+Setting up usb-modeswitch-data (20251207-1)…
+Setting up libatomic1:amd64 (16.1.0-1)…
+Setting up libpcsclite1:amd64 (2.5.0-1)…
+Setting up ppp (2.5.2-1+2)…
+Setting up libduktape207:amd64 (2.7.0-2+b3)…
+Setting up libbluetooth3:amd64 (5.85-4)…
+Setting up libnfnetlink0:amd64 (1.0.2-3+b2)…
+Setting up libnl-3-200:amd64 (3.12.0-2+b1)…
+Setting up libjim0.83:amd64 (0.83-2+b2)…
+Setting up sgml-base (1.31+nmu1)…
+Setting up libusb-1.0-0:amd64 (2:1.0.30-1)…
+Setting up libndp0:amd64 (1.9-1+b2)…
+Setting up libnl-route-3-200:amd64 (3.12.0-2+b1)…
+Setting up libglib2.0-0t64:amd64 (2.88.1-2)…
+No schema files found: doing nothing.
+Setting up libqrtr-glib0:amd64 (1.4.0-1+b1)…
+Setting up shared-mime-info (2.4-5+b3)…
+Setting up libnm0:amd64 (1.56.1-1)…
+Setting up libnetfilter-conntrack3:amd64 (1.1.1-1)…
+Setting up libmm-glib0:amd64 (1.24.2-2+b1)…
+Setting up xml-core (0.20)…
+Setting up libnl-genl-3-200:amd64 (3.12.0-2+b1)…
+Setting up usb-modeswitch (2.6.2-1)…
+Setting up libgudev-1.0-0:amd64 (238-7+b2)…
+Setting up libpolkit-gobject-1-0:amd64 (127+really127-3kali1)…
+Setting up libmbim-glib4:amd64 (1.34.0-1+b1)…
+Setting up network-manager-tui (1.56.1-1)…
+Setting up network-manager (1.56.1-1)…
+Failed to preset unit: Unit /etc/systemd/system/NetworkManager.service is masked
+Unit /etc/systemd/system/NetworkManager.service is masked, ignoring.
+/usr/bin/deb-systemd-helper: error: systemctl preset failed on NetworkManager.service: No such file or directory
+NetworkManager.service is a disabled or a static unit, not starting it.
+Setting up libmbim-proxy (1.34.0-1+b1)…
+Setting up dnsmasq-base (2.93-1)…
+Creating user 'dnsmasq' (dnsmasq) with UID 985 and GID 65534.
+Setting up wpasupplicant (2:2.10-25+b2)…
+wpa_supplicant.service is a disabled or a static unit, not starting it.
+Setting up libpolkit-agent-1-0:amd64 (127+really127-3kali1)…
+Setting up libmbim-utils (1.34.0-1+b1)…
+Setting up libqmi-glib5:amd64 (1.38.0-1+b1)…
+Setting up libqmi-proxy (1.38.0-1+b1)…
+Setting up libqmi-utils (1.38.0-1+b1)…
+Processing triggers for libc-bin (2.42-16)…
+Processing triggers for dbus (1.16.2-5)…
+Processing triggers for sgml-base (1.31+nmu1)…
+Setting up polkitd (127+really127-3kali1)…
+Creating group 'polkitd' with GID 984.
+Creating user 'polkitd' (User for polkitd) with UID 984 and GID 984.
+Created symlink '/etc/systemd/system/sockets.target.wants/polkit-agent-helper.socket' → '/usr/lib/systemd/system/polkit-agent-helper.socket'.
+Setting up modemmanager (1.24.2-2+b1)…
+Created symlink '/etc/systemd/system/dbus-org.freedesktop.ModemManager1.service' → '/usr/lib/systemd/system/ModemManager.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/ModemManager.service' → '/usr/lib/systemd/system/ModemManager.service'.
